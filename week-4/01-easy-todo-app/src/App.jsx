@@ -2,26 +2,23 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Box from '@mui/material/Box'; 
+import Navbar from './Navbar';
+import Todo from './Todo';
+import MyRouter from './myrouter';
+import { Container, Icon, Typography } from '@mui/material';
 
 function App() {
-  const [todos, setTodos] = useState([])
-    // fetch all todos from server
-
   return (
     <>
-      <div>
-        <h1>Easy Todo App</h1>
-        <input type="text" />
-      </div>
+
+    <Container sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', justifyContent: "center", alignItems: 'center' }}>
+      <Navbar></Navbar>
+      <MyRouter></MyRouter>
+    </Container>
     </>
   )
-}
+  }
+  
 
-function Todo(props) {
-    // Add a delete button here so user can delete a TODO.
-    return <div>
-        {props.title}
-    </div>
-}
-
-export default App
+export default App;

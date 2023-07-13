@@ -1,8 +1,9 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const cors=require('cors');
 const mongoose = require('mongoose');
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 
 const SECRET = 'SECr3t';  // This should be in an environment variable in a real application
@@ -148,6 +149,11 @@ app.post('/users/courses/:courseId', authenticateJwt, async (req, res) => {
 });
 
 app.get('/users/purchasedCourses', authenticateJwt, async (req, res) => {
+  /*
+    1. Find the user
+    2. Populate the purchasedCourses field
+    3. Send the response
+   */
   const user = await User.findOne({ username: req.user.username }).populate('purchasedCourses');
   if (user) {
     res.json({ purchasedCourses: user.purchasedCourses || [] });
